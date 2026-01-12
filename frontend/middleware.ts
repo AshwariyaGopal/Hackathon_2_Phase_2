@@ -10,9 +10,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (isAuthPage && sessionCookie) {
-    return NextResponse.redirect(new URL("/tasks", request.url));
-  }
+  // Allow authenticated users to access login/signup pages
+  // if (isAuthPage && sessionCookie) {
+  //   return NextResponse.redirect(new URL("/tasks", request.url));
+  // }
 
   return NextResponse.next();
 }

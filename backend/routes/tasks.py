@@ -5,9 +5,9 @@ from typing import List, Optional
 from uuid import UUID
 from datetime import datetime, timezone
 
-from ..db import get_session
-from ..models import Task, TaskCreate, TaskUpdate, TaskRead
-from ..middleware.jwt_auth import get_current_user
+from db import get_session
+from models import Task, TaskCreate, TaskUpdate, TaskRead
+from middleware.jwt_auth import get_current_user
 
 router = APIRouter(prefix="/tasks")
 

@@ -8,8 +8,8 @@ from sqlmodel import select
 from dotenv import load_dotenv
 from typing import Optional
 
-from ..db import get_session
-from ..models import Session as DbSession, User
+from db import get_session
+from models import Session as DbSession, User
 
 # Load .env from the backend directory (parent of middleware)
 env_path = Path(__file__).parent.parent / ".env"

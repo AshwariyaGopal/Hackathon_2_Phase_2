@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+// Use direct backend URL for both client and server
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
 type FetchOptions = RequestInit & {
   requireAuth?: boolean;
@@ -32,11 +33,11 @@ export async function apiClient<T = unknown>(
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     } else {
-        console.warn("API Client: No token found in cookies.");
+        // console.warn("API Client: No token found in cookies.");
     }
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,
     headers,
     credentials: "include", 

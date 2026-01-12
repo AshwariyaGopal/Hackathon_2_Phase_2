@@ -2,8 +2,8 @@ import logging
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from .db import init_db
-from .routes import tasks
+from db import init_db
+from routes import tasks
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
