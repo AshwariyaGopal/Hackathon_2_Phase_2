@@ -22,6 +22,18 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Evolution of Todo API", lifespan=lifespan)
 
+# CORS Configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://todo-frontend-two-phi.vercel.app",
+        "http://localhost:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     logger.info(f"Request: {request.method} {request.url}")
