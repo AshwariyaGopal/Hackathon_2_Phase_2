@@ -1,5 +1,8 @@
-// Use direct backend URL for both client and server
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+// Use proxy on client to handle HttpOnly cookies, direct URL on server
+const isServer = typeof window === "undefined";
+const BASE_URL = isServer
+  ? (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api")
+  : "/api/proxy";
 
 type FetchOptions = RequestInit & {
   requireAuth?: boolean;
