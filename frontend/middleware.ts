@@ -10,14 +10,26 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Allow authenticated users to access login/signup pages
-  // if (isAuthPage && sessionCookie) {
-  //   return NextResponse.redirect(new URL("/tasks", request.url));
-  // }
+  // Create the response object
+  const response = NextResponse.next();
 
-  return NextResponse.next();
+  // Define a relaxed CSP to fix blocking issues
+  // Note: We include 'unsafe-inline' and 'unsafe-eval' to support Next.js 16+ hydration and third-party scripts.
+  const csp = `
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data: https:;
+    font-src 'self';
+    connect-src 'self' *;
+  `.replace(/\s{2,}/g, ' ').trim();
+
+  response.headers.set("Content-Security-Policy", csp);
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/tasks/:path*", "/login", "/signup"],
+  // Apply to all routes to ensure CSP is set, excluding static assets
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
