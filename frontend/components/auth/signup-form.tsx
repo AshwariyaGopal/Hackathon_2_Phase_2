@@ -74,6 +74,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<typeof 
               placeholder="John Doe" 
               type="text" 
               required 
+              autoComplete="name"
               className="h-12 bg-background/50 border-muted-foreground/20 focus:border-primary transition-all duration-300"
             />
           </div>
@@ -86,6 +87,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<typeof 
               placeholder="name@example.com" 
               type="email" 
               required 
+              autoComplete="email"
               className="h-12 bg-background/50 border-muted-foreground/20 focus:border-primary transition-all duration-300"
             />
           </div>
@@ -97,6 +99,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<typeof 
               id="password" 
               type="password" 
               required 
+              autoComplete="new-password"
               className="h-12 bg-background/50 border-muted-foreground/20 focus:border-primary transition-all duration-300"
             />
           </div>

@@ -71,6 +71,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<typeof C
               placeholder="name@example.com" 
               type="email" 
               required 
+              autoComplete="email"
               className="h-12 bg-background/50 border-muted-foreground/20 focus:border-primary transition-all duration-300"
             />
           </div>
@@ -87,6 +88,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<typeof C
               id="password" 
               type="password" 
               required 
+              autoComplete="current-password"
               className="h-12 bg-background/50 border-muted-foreground/20 focus:border-primary transition-all duration-300"
             />
           </div>

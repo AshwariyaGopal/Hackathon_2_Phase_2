@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -9,22 +10,17 @@ from routes import tasks
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Evolution of Todo API")
-
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"], # Allow all origins for deployment
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.on_event("startup")
-async def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup logic
     logger.info("Initializing database...")
     await init_db()
     logger.info("Database initialized.")
+    yield
+    # Shutdown logic (if any)
+    logger.info("Shutting down...")
+
+app = FastAPI(title="Evolution of Todo API", lifespan=lifespan)
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
