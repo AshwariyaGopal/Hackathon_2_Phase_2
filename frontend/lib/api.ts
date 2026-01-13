@@ -55,25 +55,32 @@ export async function apiClient<T = unknown>(
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-    if (response.status === 401 && requireAuth) {
-      // Optional: Redirect to login or handle session expiration
-      // window.location.href = "/login";
+      if (response.status === 401 && requireAuth) {
+        // Optional: Redirect to login or handle session expiration
+        // window.location.href = "/login";
+      }
+      
+      let errorMessage = `API Error: ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.message || errorMessage;
+      } catch {
+        // ignore json parse error
+      }
+      
+      throw new Error(errorMessage);
     }
-    
-    let errorMessage = `API Error: ${response.statusText}`;
-    try {
-      const errorData = await response.json();
-      errorMessage = errorData.message || errorMessage;
-    } catch {
-      // ignore json parse error
+
+    if (response.status === 204) {
+      return {} as T;
     }
-    
-    throw new Error(errorMessage);
-  }
 
-  if (response.status === 204) {
-    return {} as T;
+    return response.json();
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new Error('Request timed out after 10 seconds. Please check your connection.');
+    }
+    throw error;
   }
-
-  return response.json();
 }
