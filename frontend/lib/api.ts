@@ -4,6 +4,8 @@ const BASE_URL = isServer
   ? (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api")
   : "/api/proxy";
 
+console.log(`[API Client] Environment: ${isServer ? 'Server' : 'Client'}, Base URL: ${BASE_URL}`);
+
 type FetchOptions = RequestInit & {
   requireAuth?: boolean;
 };
@@ -40,13 +42,19 @@ export async function apiClient<T = unknown>(
     }
   }
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
-    ...options,
-    headers,
-    credentials: "include", 
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-  if (!response.ok) {
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      ...options,
+      headers,
+      credentials: "include", 
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
     if (response.status === 401 && requireAuth) {
       // Optional: Redirect to login or handle session expiration
       // window.location.href = "/login";
