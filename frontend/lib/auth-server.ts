@@ -14,7 +14,11 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
-    trustedOrigins: ["http://localhost:3000"],
+    trustedOrigins: [
+        "http://localhost:3000", 
+        process.env.NEXT_PUBLIC_APP_URL || "", 
+        process.env.NEXT_PUBLIC_BETTER_AUTH_URL || ""
+    ].filter(Boolean),
     plugins: [
         jwt(),
     ],
