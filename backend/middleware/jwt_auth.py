@@ -31,7 +31,7 @@ async def get_current_user(
     
     # 2. Fallback to Cookie
     if not token:
-        token = request.cookies.get("better-auth.session_token")
+        token = request.cookies.get("better-auth.session_token") or request.cookies.get("__Secure-better-auth.session_token")
         
     if not token:
         print("DEBUG: No token found in Header or Cookie")

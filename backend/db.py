@@ -10,6 +10,10 @@ env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL environment variable is not set. Please set it in your environment variables.")
+
 # SQLModel/SQLAlchemy async requires +asyncpg or +psycopg (v3)
 # The provided URL starts with postgresql://. We need to convert it for async if using asyncpg, 
 # but psycopg (v3) supports postgresql:// (with some config) or we can use postgresql+psycopg://
