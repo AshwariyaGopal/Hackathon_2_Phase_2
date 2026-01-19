@@ -27,7 +27,7 @@ export async function apiClient<T = unknown>(
     if (typeof window === "undefined") {
       const { cookies } = await import("next/headers");
       const cookieStore = await cookies();
-      token = cookieStore.get("better-auth.session_token")?.value;
+      token = cookieStore.get("better-auth.session_token")?.value || cookieStore.get("__Secure-better-auth.session_token")?.value;
     } else {
       // On client, we can try to get it from cookies directly or session
       // Robust cookie parsing
