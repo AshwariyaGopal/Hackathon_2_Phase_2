@@ -11,7 +11,7 @@ export function Header() {
           <Link href="/" className="mr-2 md:mr-6 flex items-center space-x-2">
             <Logo />
           </Link>
-          <nav className="flex items-center space-x-4 md:space-x-6 text-sm font-medium">
+          <nav className="hidden sm:flex items-center space-x-4 md:space-x-6 text-sm font-medium">
             <Link
               href="/tasks"
               className="transition-colors hover:text-foreground/80 text-foreground"

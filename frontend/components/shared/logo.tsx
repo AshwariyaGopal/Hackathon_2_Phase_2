@@ -12,7 +12,7 @@ export function Logo() {
           className="object-contain"
         />
       </div>
-      <span className="text-xl font-bold tracking-tight text-foreground hidden sm:block">
+      <span className="text-xl font-bold tracking-tight text-foreground">
         TaskZen
       </span>
     </div>
