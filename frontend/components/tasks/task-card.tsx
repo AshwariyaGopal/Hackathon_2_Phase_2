@@ -15,27 +15,27 @@ interface TaskCardProps {
 export function TaskCard({ task, onToggle, onEdit, onDelete }: TaskCardProps) {
   return (
     <div className={cn(
-      "group flex items-center justify-between p-4 transition-all duration-200 hover:bg-gray-50/80",
+      "group flex flex-col sm:flex-row sm:items-center justify-between p-4 transition-all duration-200 hover:bg-gray-50/80 gap-4 sm:gap-0",
       task.is_completed ? "bg-gray-50/50" : "bg-white"
     )}>
       {/* Left: Checkbox & Content */}
-      <div className="flex items-start gap-4 flex-1">
+      <div className="flex items-start gap-4 flex-1 w-full">
         <Checkbox 
           checked={task.is_completed} 
           onCheckedChange={(checked) => onToggle(task.id, !!checked)}
-          className="mt-1 data-[state=checked]:bg-gray-400 data-[state=checked]:border-gray-400 rounded-full w-5 h-5 border-2 border-gray-300"
+          className="mt-1 data-[state=checked]:bg-gray-400 data-[state=checked]:border-gray-400 rounded-full w-5 h-5 border-2 border-gray-300 shrink-0"
         />
         
-        <div className="flex flex-col space-y-1 max-w-[80%]">
+        <div className="flex flex-col space-y-1 w-full">
           <span className={cn(
-            "text-base font-medium transition-all",
+            "text-base font-medium transition-all break-all",
             task.is_completed ? "text-gray-400 line-through" : "text-gray-900"
           )}>
             {task.title}
           </span>
           {task.description && (
             <p className={cn(
-              "text-sm line-clamp-1",
+              "text-sm line-clamp-2 sm:line-clamp-1",
               task.is_completed ? "text-gray-300" : "text-gray-500"
             )}>
               {task.description}
@@ -45,16 +45,16 @@ export function TaskCard({ task, onToggle, onEdit, onDelete }: TaskCardProps) {
       </div>
 
       {/* Right: Date & Actions */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 w-full sm:w-auto pl-9 sm:pl-0">
         <div className={cn(
-          "flex items-center text-xs",
+          "flex items-center text-xs whitespace-nowrap",
           task.is_completed ? "text-gray-300" : "text-gray-400"
         )}>
            <Calendar className="mr-1.5 h-3.5 w-3.5" />
            {formatDate(task.created_at)}
         </div>
         
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
           <Button 
             variant="ghost" 
             size="icon" 
