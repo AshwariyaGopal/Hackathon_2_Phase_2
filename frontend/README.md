@@ -1,4 +1,4 @@
-# Evolution of Todo - Frontend (Phase II)
+# TaskZen - Frontend (Phase II)
 
 A stunning, professional, and visually polished Next.js frontend for the multi-user todo application.
 

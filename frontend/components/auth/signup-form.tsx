@@ -56,10 +56,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<typeof 
   }
 
   return (
-    <Card className={cn("w-[400px] border-none shadow-2xl bg-card/60 backdrop-blur-xl animate-in fade-in zoom-in duration-500", className)} {...props}>
+    <Card className={cn("w-full max-w-[400px] border-none shadow-2xl bg-card/60 backdrop-blur-xl animate-in fade-in zoom-in duration-500", className)} {...props}>
       <CardHeader className="space-y-1 pb-8 text-center">
-        <CardTitle className="text-3xl font-extrabold tracking-tight">Join Evolution</CardTitle>
-        <CardDescription className="text-base">
+                  <CardTitle className="text-3xl font-extrabold tracking-tight">Join TaskZen</CardTitle>        <CardDescription className="text-base">
           Start your journey towards peak productivity
         </CardDescription>
       </CardHeader>

@@ -22,41 +22,36 @@ export function TaskDashboard({ initialTasks }: TaskDashboardProps) {
   const [deletingTaskId, setDeletingTaskId] = React.useState<string | null>(null)
 
   return (
-    <div className="container mx-auto py-8 px-4 md:px-8 max-w-7xl">
-      <div className="flex items-center justify-between mb-8">
-        <div className="animate-in fade-in slide-in-from-left-4 duration-500">
-          <h1 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-            Your Tasks
-          </h1>
-          <p className="text-muted-foreground mt-1 text-lg">
-            Manage your daily goals and stay productive.
+    <div className="container mx-auto max-w-7xl py-12 px-4 md:px-8">
+      {/* Top Section */}
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          <p className="text-gray-500 mt-1 text-lg">
+            Your tasks, clearly organized in one place.
           </p>
         </div>
         <Button 
-          onClick={() => setIsCreateModalOpen(true)} 
-          className="hidden sm:flex rounded-full px-6 shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30 hover:-translate-y-0.5"
+          onClick={() => setIsCreateModalOpen(true)}
+          className="rounded-full bg-gray-900 text-white shadow-md hover:bg-gray-800 transition-all hover:shadow-lg"
         >
-          <Plus className="mr-2 h-5 w-5" /> Add Task
+          <Plus className="mr-2 h-4 w-4" /> New Task
         </Button>
       </div>
 
-      <TaskList
-        tasks={tasks}
-        isLoading={isLoading}
-        onToggle={(id, completed) => updateTask(id, { is_completed: completed })}
-        onEdit={(task) => setEditingTask(task)}
-        onDelete={(id) => setDeletingTaskId(id)}
-        onCreate={() => setIsCreateModalOpen(true)}
-      />
+      <div className="h-px w-full bg-gray-100 mb-8" />
 
-      {/* Floating Action Button for Mobile */}
-      <Button
-        onClick={() => setIsCreateModalOpen(true)}
-        className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl sm:hidden animate-in fade-in zoom-in duration-500 delay-300"
-        size="icon"
-      >
-        <Plus className="h-8 w-8" />
-      </Button>
+      {/* Main Content Area */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 min-h-[400px]">
+        <TaskList
+          tasks={tasks}
+          isLoading={isLoading}
+          onToggle={(id, completed) => updateTask(id, { is_completed: completed })}
+          onEdit={(task) => setEditingTask(task)}
+          onDelete={(id) => setDeletingTaskId(id)}
+          onCreate={() => setIsCreateModalOpen(true)}
+        />
+      </div>
 
       <CreateTaskModal
         open={isCreateModalOpen}

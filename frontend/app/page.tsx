@@ -1,102 +1,121 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/shared/logo"
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Star } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { CalendarCheck2, CheckCircle2, Layout } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background selection:bg-primary/10">
-      {/* Refined Background */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-[#0a0a0a] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#1f1f1f_1px,transparent_1px)] [background-size:20px_20px]">
-        <div className="absolute inset-0 bg-gradient-to-tr from-background via-transparent to-background/50"></div>
-      </div>
-
-      <header className="flex h-20 items-center px-4 md:px-8 max-w-7xl mx-auto w-full">
-        <Logo />
+    <div className="flex min-h-screen flex-col">
+      <header className="sticky top-0 z-50 flex h-16 w-full items-center border-b border-gray-100 bg-[#FAF9F6] px-4 backdrop-blur-md md:px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <Logo />
+        </Link>
         <nav className="ml-auto flex items-center gap-6">
-          <Link href="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
-            Login
+          <Link 
+            href="/login" 
+            className="text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+          >
+            Sign In
           </Link>
           <Link href="/signup">
-            <Button className="rounded-full px-6 shadow-lg shadow-primary/20">
-              Start Building
+            <Button className="rounded-full px-6 font-semibold shadow-sm">
+              Sign Up
             </Button>
           </Link>
         </nav>
       </header>
-
-      <main className="flex-1 flex flex-col items-center pt-20 md:pt-32 px-4 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-semibold mb-8 animate-in fade-in slide-in-from-top-4 duration-1000">
-          <Star className="h-3 w-3 fill-current" />
-          <span>New: Phase II Evolution Live</span>
-        </div>
-
-        <div className="space-y-8 max-w-4xl">
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Task Management <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
-              Redefined.
-            </span>
-          </h1>
-          <p className="text-lg text-muted-foreground md:text-2xl max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200 leading-relaxed">
-            A professional workspace for your daily goals. Experience the perfect 
-            balance of minimalist design and powerful functionality.
-          </p>
+      <main className="flex-1">
+        <section className="relative flex flex-col items-center justify-center overflow-hidden bg-white pt-24 pb-24 md:pt-32 md:pb-32">
+          {/* Subtle Background Elements */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-blue-50/50 blur-[120px] pointer-events-none" />
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Link href="/signup">
-              <Button size="lg" className="h-14 px-10 text-lg rounded-full shadow-2xl shadow-primary/30">
-                Create Free Account <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full border-2 bg-background/50 backdrop-blur-sm">
-                Live Preview
-              </Button>
-            </Link>
-          </div>
-        </div>
+          <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto px-4 space-y-8">
+            
+            {/* Badge */}
+            <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-gray-600 shadow-sm">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2"></span>
+              Simple. Focused. Productive.
+            </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-32 mb-20 max-w-6xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
-          <div className="group relative flex flex-col items-start p-8 rounded-3xl border bg-card/30 backdrop-blur-md transition-all hover:bg-card/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
-            <div className="p-3 rounded-2xl bg-primary/10 text-primary mb-6 transition-transform group-hover:scale-110">
-              <Zap className="h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Instant Sync</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed text-left">
-              Real-time updates and optimistic state management keep your tasks in perfect sync across all sessions.
-            </p>
-          </div>
-          
-          <div className="group relative flex flex-col items-start p-8 rounded-3xl border bg-card/30 backdrop-blur-md transition-all hover:bg-card/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
-            <div className="p-3 rounded-2xl bg-primary/10 text-primary mb-6 transition-transform group-hover:scale-110">
-              <ShieldCheck className="h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Secure Core</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed text-left">
-              Enterprise-grade authentication with JWT tokens ensures your data remains private and protected.
-            </p>
-          </div>
+            {/* Main Heading */}
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl lg:leading-tight">
+              Stay Organized. <br className="hidden sm:block" />
+              <span className="text-gray-400">Stay Calm.</span>
+            </h1>
 
-          <div className="group relative flex flex-col items-start p-8 rounded-3xl border bg-card/30 backdrop-blur-md transition-all hover:bg-card/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
-            <div className="p-3 rounded-2xl bg-primary/10 text-primary mb-6 transition-transform group-hover:scale-110">
-              <CheckCircle2 className="h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Pure Focus</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed text-left">
-              A distraction-free interface designed to help you focus on what truly matters: getting things done.
+            {/* Subheading */}
+            <p className="max-w-2xl text-lg text-gray-500 md:text-xl leading-relaxed">
+              TaskZen helps you plan, track, and complete your tasks without distractions — so you can focus on what truly matters.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-4">
+              <Link href="/signup">
+                <Button className="h-12 px-8 rounded-full bg-gray-900 text-white hover:bg-gray-800 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                  Get Started
+                </Button>
+              </Link>
+              <Link href="/login">
+                <Button variant="ghost" className="h-12 px-8 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-200/50 text-base font-medium">
+                  Sign In
+                </Button>
+              </Link>
+            </div>
+
           </div>
-        </div>
+        </section>
+
+        <section className="w-full py-20 bg-white">
+          <div className="container max-w-5xl mx-auto px-4 md:px-6">
+            <div className="grid gap-12 sm:grid-cols-3">
+              {/* Item 1 */}
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="mb-2 p-3 rounded-2xl bg-gray-50 text-gray-600">
+                  <CalendarCheck2 className="h-6 w-6" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Plan Your Day</h3>
+                <p className="text-sm text-gray-500 leading-relaxed max-w-[250px]">
+                  Organize tasks clearly with priorities and due dates, so you always know what to do next.
+                </p>
+              </div>
+
+              {/* Item 2 */}
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="mb-2 p-3 rounded-2xl bg-gray-50 text-gray-600">
+                  <CheckCircle2 className="h-6 w-6" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Track Progress</h3>
+                <p className="text-sm text-gray-500 leading-relaxed max-w-[250px]">
+                  Mark tasks as complete and watch your productivity grow step by step.
+                </p>
+              </div>
+
+              {/* Item 3 */}
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="mb-2 p-3 rounded-2xl bg-gray-50 text-gray-600">
+                  <Layout className="h-6 w-6" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Stay in Control</h3>
+                <p className="text-sm text-gray-500 leading-relaxed max-w-[250px]">
+                  A clean, distraction-free workspace that keeps your focus exactly where it belongs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-
-      <footer className="py-12 flex flex-col items-center justify-center border-t bg-card/30 backdrop-blur-sm gap-4">
-        <Logo />
-        <p className="text-sm text-muted-foreground">
-          © 2026 Evolution of Todo. Crafted with passion for the modern web.
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2026 TaskZen Inc. All rights reserved.
         </p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+        </nav>
       </footer>
     </div>
   )

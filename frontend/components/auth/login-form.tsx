@@ -53,7 +53,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<typeof C
   }
 
   return (
-    <Card className={cn("w-[400px] border-none shadow-2xl bg-card/60 backdrop-blur-xl animate-in fade-in zoom-in duration-500", className)} {...props}>
+    <Card className={cn("w-full max-w-[400px] border-none shadow-2xl bg-card/60 backdrop-blur-xl animate-in fade-in zoom-in duration-500", className)} {...props}>
       <CardHeader className="space-y-1 pb-8 text-center">
         <CardTitle className="text-3xl font-extrabold tracking-tight">Welcome back</CardTitle>
         <CardDescription className="text-base">
@@ -113,7 +113,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<typeof C
           </div>
         </div>
         <p className="text-center text-sm text-muted-foreground">
-           New to Evolution? <Link href="/signup" className="text-primary font-bold hover:underline underline-offset-4">Create account</Link>
+           New to TaskZen? <Link href="/signup" className="text-primary font-bold hover:underline underline-offset-4">Create account</Link>
         </p>
       </CardFooter>
     </Card>

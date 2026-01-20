@@ -41,58 +41,46 @@ export function CreateTaskModal({ open, onOpenChange, onAdd }: CreateTaskModalPr
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px] border-none shadow-2xl bg-card/95 backdrop-blur-2xl rounded-[32px] p-8 animate-in zoom-in-95 duration-300">
-        <form onSubmit={onSubmit} className="space-y-8">
-          <DialogHeader className="space-y-2">
-            <DialogTitle className="text-3xl font-extrabold tracking-tight">Create New Task</DialogTitle>
-            <DialogDescription className="text-base text-muted-foreground/80">
-              Transform your goals into actionable steps.
+      <DialogContent className="sm:max-w-[425px]">
+        <form onSubmit={onSubmit}>
+          <DialogHeader>
+            <DialogTitle>Create Task</DialogTitle>
+            <DialogDescription>
+              Add a new task to your list. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="title" className="text-sm font-bold uppercase tracking-widest text-muted-foreground/70">
-                Task Title
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="title" className="text-right">
+                Title
               </Label>
-              <Input 
-                id="title" 
-                name="title" 
-                placeholder="What are we accomplishing today?" 
-                required 
-                className="h-14 bg-background/50 border-muted-foreground/20 focus:border-primary text-lg transition-all duration-300 rounded-2xl"
+              <Input
+                id="title"
+                name="title"
+                placeholder="Task title"
+                className="col-span-3"
+                required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="description" className="text-sm font-bold uppercase tracking-widest text-muted-foreground/70">
-                Detailed Description
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="description" className="text-right">
+                Description
               </Label>
               <Textarea
                 id="description"
                 name="description"
-                placeholder="Add context, notes, or sub-tasks..."
-                className="min-h-[120px] bg-background/50 border-muted-foreground/20 focus:border-primary text-base transition-all duration-300 rounded-2xl p-4"
+                placeholder="Task description (optional)"
+                className="col-span-3"
               />
             </div>
           </div>
-          <DialogFooter className="sm:justify-between gap-4">
-            <Button 
-              type="button" 
-              variant="ghost" 
-              onClick={() => onOpenChange(false)}
-              className="h-12 px-6 rounded-full font-bold"
-            >
+          <DialogFooter>
+            <Button type="button" variant="secondary" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
-            <Button 
-              type="submit" 
-              disabled={isLoading}
-              className="h-12 px-10 rounded-full font-bold shadow-xl shadow-primary/20 transition-all hover:shadow-primary/30 hover:-translate-y-0.5"
-            >
-              {isLoading ? (
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              ) : (
-                "Launch Task"
-              )}
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Save changes
             </Button>
           </DialogFooter>
         </form>

@@ -1,5 +1,5 @@
-import { Plus, ListTodo } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CheckCircle2, Plus } from "lucide-react"
 
 interface EmptyStateProps {
   onCreate: () => void
@@ -7,23 +7,16 @@ interface EmptyStateProps {
 
 export function EmptyState({ onCreate }: EmptyStateProps) {
   return (
-    <div className="flex min-h-[450px] flex-col items-center justify-center rounded-[32px] border-2 border-dashed border-muted-foreground/10 p-12 text-center animate-in fade-in zoom-in duration-700 bg-card/20 backdrop-blur-sm">
-      <div className="relative">
-        <div className="absolute inset-0 scale-150 blur-3xl opacity-20 bg-primary rounded-full" />
-        <div className="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-primary/10 text-primary mb-8 rotate-3 transition-transform hover:rotate-0 duration-500">
-          <ListTodo className="h-12 w-12" />
-        </div>
+    <div className="flex flex-col items-center justify-center p-12 text-center animate-in fade-in duration-500 min-h-[400px]">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-50 mb-6">
+        <CheckCircle2 className="h-8 w-8 text-gray-300" strokeWidth={1.5} />
       </div>
-      <h3 className="text-3xl font-extrabold tracking-tight">Your canvas is empty</h3>
-      <p className="mb-8 mt-4 max-w-sm text-lg text-muted-foreground leading-relaxed">
-        Ready to take control of your day? Start building your success story one task at a time.
+      <h3 className="text-xl font-semibold text-gray-900">No tasks yet</h3>
+      <p className="mt-2 mb-8 text-gray-500 max-w-sm text-sm">
+        You&apos;re all caught up! Add your first task to get started with your day.
       </p>
-      <Button 
-        onClick={onCreate} 
-        size="lg" 
-        className="h-14 px-8 rounded-full text-lg font-bold shadow-2xl shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-1 transition-all"
-      >
-        <Plus className="mr-2 h-6 w-6" /> Create First Task
+      <Button onClick={onCreate} className="rounded-full bg-gray-900 text-white shadow-md hover:bg-gray-800">
+        <Plus className="mr-2 h-4 w-4" /> Create Task
       </Button>
     </div>
   )
